@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h3>Registeration Form</h3>
+
+	<form action='/register/' method='POST'>
+		{% from '_formhelpers.html' import render_field%}
+		<dl>
+			{{ render_field(form.username) }}
+			{{ render_field(form.email) }}
+			{{ render_field(form.password) }}
+			{{ render_field(form.confirm) }}
+			{{ render_field(form.accept_tc) }}
+		</dl>
+		<input type='submit' value='Submit'>
+
+		{{ error }}
+	</form>
+{% endblock %}
