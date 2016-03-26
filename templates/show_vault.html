@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h2>Vault data</h2>
+	<br>
+	
+	<ul>
+		{% for data in vault_data %}
+			<li>{{ data[0] }}</li>
+			<li>{{ data[1] }}</li>
+			<li>{{ data[2] }}</li>
+			<li>{{ data[3] }}</li>
+			<br><br>
+		{% endfor %}
+	</ul>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h3>Enter details to store</h3>
+	<form action='/enter_vault/' method="POST">
+		{% from '_formhelpers.html' import render_field %}
+		{{ render_field(form.title) }}
+		{{ render_field(form.username) }}
+		{{ render_field(form.password) }}
+		<input type="Submit" value="Add details to vault">
+	</form>
+
+	{{ error }}
+{% endblock %}

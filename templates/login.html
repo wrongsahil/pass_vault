@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+	<h3>Login</h3>
+	<br/>
+	<form action="" method='POST'>
+		<input type='text' placeholder="Username" name='username'>
+		<input type='password' placeholder="Password" name='password'>
+		<input type='submit' value='Submit'>
+	</form>
 
+	{{ error }}
+	
 {% endblock %}
