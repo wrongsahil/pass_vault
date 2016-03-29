@@ -1,0 +1,25 @@
+.brand_logo{
+	padding:7px;
+	width:70px;
+}
+
+.brand_text{
+	font-size:275%;
+	padding:5px;
+	color:black;
+}
+
+.brand{
+	background-color:rgb(155,100, 255);
+	border:2px solid black;
+	border-radius:100px 20px 20px 100px;
+}
+
+a:link{
+	text-decoration:none;
+	color:black;
+}
+
+.input_box{
+	background-color: red;
+}

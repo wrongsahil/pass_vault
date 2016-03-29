@@ -1,16 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h2>Vault data</h2>
-	<br>
-	
-	<ul>
-		{% for data in vault_data %}
-			<li>{{ data[0] }}</li>
-			<li>{{ data[1] }}</li>
-			<li>{{ data[2] }}</li>
-			<li>{{ data[3] }}</li>
-			<br><br>
-		{% endfor %}
-	</ul>
+
+	<div class="container" style="width:40%;">
+		<center><a href="/enter_vault/" class="btn btn-primary" style="height:200%;font-size:180%;">Enter Data in Vault</a>
+
+		<h2>Vault data</h2>
+		<br/>
+		</center>
+	<div class="container-fluid">
+		<table class="table table-striped" style="font-size:150%;">
+			<th>
+				<td>Title</td>
+				<td>Username</td>
+				<td>Password</td>
+			</th>
+
+			{% for data in vault_data %}
+			<tr>
+				<td>{{ data[0] }}</td>
+				<td>{{ data[1] }}</td>
+				<td>{{ data[2] }}</td>
+				<td>{{ data[3] }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
 {% endblock %}

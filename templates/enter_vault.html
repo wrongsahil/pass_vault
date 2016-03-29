@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h3>Enter details to store</h3>
+	<div class="container" style="width:40%">
+		<center><h2>Enter details to store</h2></center>
+	</div>
+	<br/>
 	<form action='/enter_vault/' method="POST">
 		{% from '_formhelpers.html' import render_field %}
 		{{ render_field(form.title) }}
 		{{ render_field(form.username) }}
 		{{ render_field(form.password) }}
-		<input type="Submit" value="Add details to vault">
+		<div class="container" style="width:40%;">
+			<input class="form-control btn btn-primary" style="height:200%;font-size:180%;" type="Submit" value="Add details to vault">
+		</div>
 	</form>
 
-	{{ error }}
 {% endblock %}

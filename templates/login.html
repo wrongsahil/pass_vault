@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h3>Login</h3>
-	<br/>
+	<div class="container" style="width:40%">
+		<center><h2>Login Form</h2></center>
+	</div>
+	<br>
 	<form action="" method='POST'>
-		<input type='text' placeholder="Username" name='username'>
-		<input type='password' placeholder="Password" name='password'>
-		<input type='submit' value='Submit'>
+		<div class="container" style="width:40%">
+			<input class="form-control" type='text' placeholder="Username" name='username' style="height:200%;font-size:180%;">
+			<br>
+			<input class="form-control"type='password' placeholder="Password" name='password' style="height:200%;font-size:180%;">
+			<br>
+			<input class="form-control btn btn-primary" type='submit' value='Submit' style="height:200%;font-size:180%;">
+		</div>
 	</form>
-
-	{{ error }}
+	<br>
+	<div class="container" style="width:40%;font-size:200%;"><center>{{ error }}</center></div>
 	
 {% endblock %}

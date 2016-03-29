@@ -1,7 +1,6 @@
 {% macro render_field(field) %}
-  <div>
-    <p>{{ field.label }}</p>
-    <p>{{ field(**kwargs)|safe }}
+  <div class="container" style="width:40%">
+    <p>{{ field(class_="form-control", placeholder=field.label.text, style="height:200%;font-size:180%;") }}
     {% if field.errors %}
       <ul class=errors>
       {% for error in field.errors %}

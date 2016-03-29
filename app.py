@@ -25,6 +25,7 @@ class RegisterationForm(Form):
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
 
+	session.clear()
 	form = RegisterationForm(request.form)
 	error = ""
 
@@ -81,7 +82,7 @@ def login():
 		if request.method == 'POST':
 			c, conn = connection()
 
-			data = c.execute("SELECT * FROM data WHERE username = (%s)", thwart(request.form['username']))
+			data = c.execute("SELECT * FROM data WHERE username = (%s)", thwart(str(request.form['username'])))
 			data = c.fetchone()[3]
 
 			if sha256_crypt.verify(str(request.form['password']), str(data)):
@@ -91,7 +92,7 @@ def login():
 				conn.close()
 				gc.collect()
 				flash('Logged in Successfully')
-				return redirect(url_for('index'))
+				return redirect(url_for('show_vault'))
 
 			else:
 				error = "Invalid Credentials"
@@ -109,7 +110,7 @@ def show_vault():
 
 	if 'logged_in' in session:
 		c, conn = connection()
-		vault_data = c.execute("SELECT * FROM "+ session['username'])
+		vault_data = c.execute("SELECT * FROM "+ str(session['username']).lower())
 		vault_data = c.fetchall()
 		#print str(vault_data)
 		#return redirect(url_for('index'))
@@ -123,13 +124,12 @@ def show_vault():
 class vaultForm(Form):
 	title = TextField('Title', [validators.Required(), validators.Length(min=5, max=50)])
 	username = TextField('Username to be stored', [validators.Required(), validators.Length(min=5, max=50)])
-	password = PasswordField("Password to be stored", [validators.Required(), validators.Length(min=5, max=50)])
+	password = TextField("Password to be stored", [validators.Required(), validators.Length(min=5, max=50)])
 
 
 @app.route('/enter_vault/', methods=['POST', 'GET'])
 def enter_vault():
 	error = ""
-
 	if 'logged_in' in session:
 		form = vaultForm(request.form)
 
@@ -140,7 +140,7 @@ def enter_vault():
 
 			c, conn = connection()
 
-			c.execute("INSERT INTO "+ str(session['username']) + " (title, username, password) VALUES (%s, %s, %s)", (thwart(title), thwart(username), thwart(password)))
+			c.execute("INSERT INTO "+ str(session['username']).lower() + " (title, username, password) VALUES (%s, %s, %s)", (thwart(title), thwart(username), thwart(password)))
 			conn.commit()
 			c.close()
 			conn.close()
